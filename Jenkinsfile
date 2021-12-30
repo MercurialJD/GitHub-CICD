@@ -21,7 +21,7 @@ pipeline {
     CREDENTIALS = '2934736d-facb-4169-a459-01f7119eddee'
     DEVENV = 'https://dev117906.service-now.com/'
     TESTENV = 'https://dev99253.service-now.com/'
-    TESTSUITEID = '488a2dd487031010f4cc7157f6cb0ba7'
+    TESTSUITEID = '845f8b900b20220050192f15d6673aee'
   }
   stages {
     stage('Build') {
