@@ -31,7 +31,7 @@ pipeline {
 //         }
 //       }
       steps {
-        snApplyChanges(appScope: "APPSCOPE", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
+        snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
       }
     }
     stage('Test') {
@@ -41,7 +41,7 @@ pipeline {
 //         }
 //       }
       steps {
-        snApplyChanges(appScope: "APPSCOPE", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
+        snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
         snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID}", withResults: true)
       }
     }
