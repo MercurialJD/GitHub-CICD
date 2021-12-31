@@ -21,7 +21,8 @@ pipeline {
     CREDENTIALS = '2934736d-facb-4169-a459-01f7119eddee'
     DEVENV = 'https://dev117906.service-now.com/'
     TESTENV = 'https://dev99253.service-now.com/'
-    TESTSUITEID_DEV = '632e43900b20220050192f15d6673a7e'
+    TESTSUITEID_DEV_CHILDA = '845f8b900b20220050192f15d6673aee'
+    TESTSUITEID_DEV_SIMPLE = '632e43900b20220050192f15d6673a7e'
     TESTSUITEID_TEST = '845f8b900b20220050192f15d6673aee'
   }
   stages {
@@ -33,7 +34,7 @@ pipeline {
 //       }
       steps {
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
-        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV}", withResults: true)
+        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV_CHILDA}", withResults: true)
       }
     }
 //     stage('Test') {
