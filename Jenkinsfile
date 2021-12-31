@@ -7,8 +7,7 @@ pipeline {
     CREDENTIALS = '2934736d-facb-4169-a459-01f7119eddee'
     DEVENV = 'https://dev117906.service-now.com/'
     TESTENV = 'https://dev99253.service-now.com/'
-    TESTSUITEID_DEV = '845f8b900b20220050192f15d6673aee'
-    TESTSUITEID_TEST = '845f8b900b20220050192f15d6673aee'
+    TESTSUITEID = '1ac870858738011088f3ca280cbb3525'
   }
   stages {
     stage('Dev') {
@@ -18,7 +17,7 @@ pipeline {
       steps {
         echo "${BRANCH}"
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
-        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV}", withResults: true)
+        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID}", withResults: true)
       }
     }
     stage('Test') {
@@ -28,7 +27,7 @@ pipeline {
       steps {
         echo "${BRANCH}"
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
-        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID_TEST}", withResults: true)
+        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID}", withResults: true)
       }
     }
   }
