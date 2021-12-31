@@ -1,17 +1,3 @@
-// Simple script with one step: apply changes from source control linked to the app repo
-
-// pipeline {
-//     agent any
-
-//     stages {
-//         stage('preparation') {
-//             steps {
-//                 snApplyChanges url: "https://dev99253.service-now.com", credentialsId: "2934736d-facb-4169-a459-01f7119eddee", appScope: "x_666176_github_ci"
-//             }
-//         }
-//     }
-// }
-
 pipeline {
   agent any
   environment {
@@ -34,19 +20,19 @@ pipeline {
 //       }
       steps {
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
-        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV_CHILDA}", withResults: true)
+//         snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV_CHILDA}", withResults: true)
       }
     }
-//     stage('Test') {
-// //       when {
-// //         not {
-// //           branch 'master'
-// //         }
-// //       }
-//       steps {
-//         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
-//         snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID_TEST}", withResults: true)
+    stage('Test') {
+//       when {
+//         not {
+//           branch 'master'
+//         }
 //       }
-//     }
+      steps {
+        snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
+        snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID_TEST}", withResults: true)
+      }
+    }
   }
 }
