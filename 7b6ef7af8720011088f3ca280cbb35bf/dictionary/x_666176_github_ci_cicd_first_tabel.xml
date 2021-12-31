@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="CICD First Tabel" max_length="40" name="x_666176_github_ci_cicd_first_tabel" type="collection">
+        <element label="First Row" max_length="40" name="first_row" type="string"/>
+    </element>
+</database>
