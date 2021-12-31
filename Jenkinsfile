@@ -11,24 +11,22 @@ pipeline {
     TESTSUITEID_TEST = '845f8b900b20220050192f15d6673aee'
   }
   stages {
-    stage('Build') {
-//       when {
-//         not {
-//           branch 'master'
-//         }
-//       }
+    stage('Dev') {
+      when {
+        branch 'dev'
+      }
       steps {
+        echo "${BRANCH}"
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${DEVENV}", credentialsId: "${CREDENTIALS}")
         snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${DEVENV}", testSuiteSysId: "${TESTSUITEID_DEV}", withResults: true)
       }
     }
     stage('Test') {
-//       when {
-//         not {
-//           branch 'master'
-//         }
-//       }
+      when {
+        branch 'test'
+      }
       steps {
+        echo "${BRANCH}"
         snApplyChanges(appScope: "${APPSCOPE}", branchName: "${BRANCH}", url: "${TESTENV}", credentialsId: "${CREDENTIALS}")
         snRunTestSuite(credentialsId: "${CREDENTIALS}", url: "${TESTENV}", testSuiteSysId: "${TESTSUITEID_TEST}", withResults: true)
       }
